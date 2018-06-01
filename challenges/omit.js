@@ -12,6 +12,7 @@ through them. Look up the "rest parameter" syntax.
 const omit = () => {
 }
 
+
 // Check your solution by running these tests: mocha *this_filename*
 const assert = require('assert');
 
