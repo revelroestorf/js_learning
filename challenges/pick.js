@@ -11,6 +11,7 @@ through them. Look up the “rest parameter” syntax.
 
 // Your code here!
 const pick = () => {
+  
 }
 
 // Check your solution by running these tests: mocha *this_filename*
