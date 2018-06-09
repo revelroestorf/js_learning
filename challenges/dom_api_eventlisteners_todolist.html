@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+  </head>
+  <body class="has-text-centered">
+    <progress class="progress is-primary" value="0" max="100">0%</progress>
+    <nav class="level">
+      <div class="level-item">
+        <div>
+          <div class="heading">To Do</div>
+          <h1 class="title is-1">0</h1>
+        </div>
+      </div>
+    </nav>
+
+    <form>
+      <input type="text" class="input is-large is-primary has-text-centered" placeholder="add a todo!" value="">
+    </form>
+
+    <br>
+
+    <div id="tasks"></div>
+
+    <script>
+    // Select all our elements
+    const form = document.querySelector('form')
+    const input = document.querySelector('form input')
+    const tasks = document.querySelector('#tasks')
+    const totalTasks = document.querySelector('h1')
+    const progress = document.querySelector('progress')
+
+    // Listen for form submission
+    form.addEventListener('submit', (e) => {
+      e.preventDefault()
+      addTask(input.value)
+      input.value = ''
+    })
+
+    // Create new task
+    addTask = (task) => {
+      const notification = document.createElement('div')
+      notification.classList = 'notification'
+      notification.innerText = task
+      notification.addEventListener('click', toggleStatus)
+      tasks.prepend(notification)
+      totalTasks.innerText = tasks.children.length
+    }
+
+    // Mark a task as complete
+    toggleStatus = (event) => {
+      const task = event.target;
+      if (task.classList.contains('is-primary')) {
+        task.classList = 'notification';
+      } else {
+        task.classList = 'notification is-primary';
+      }
+      updateProgress();
+    }
+
+    // Update progress bar
+    updateProgress = () => {
+      const totalTasks = tasks.children.length;
+      const completedTasks = document.querySelectorAll('.notification.is-primary').length;
+      progress.value = (completedTasks/totalTasks) * 100;
+    }
+    </script>
+
+  </body>
+</html>
