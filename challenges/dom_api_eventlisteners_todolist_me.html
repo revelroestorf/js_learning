@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>todo list</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  </head>
+  <body class='text-center'>
+
+    <h3 class="totalTasks">0</h3>
+
+    <div class="">
+      <progress class="text-center text-primary visible" value="0" max="100">0%</progress>
+    </div>
+
+
+    <form>
+      <input type="text" class="form-control text-center" value="" placeholder="New todo item">
+      <!-- <button class="btn">button</button> -->
+    </form>
+
+    <div id="tasks"></div>
+
+    <script>
+
+    // const btn = document.querySelector('.btn')
+      const form = document.querySelector('form')
+      const input = document.querySelector('input')
+      const tasks = document.querySelector('#tasks')
+      const totalTasks = document.querySelector('.totalTasks')
+      const progress = document.querySelector('progress')
+
+      // btn.addEventListener('click', function(e) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault()
+        if (input.value) {
+          addTask(input.value)
+          input.value = ''
+        }
+      })
+
+      addTask = function (task) {
+        const taskElement = document.createElement('div')
+        taskElement.innerText = task
+        tasks.prepend(taskElement)
+        taskElement.classList = 'todo'
+        taskElement.addEventListener('click', taskComplete)
+        totalTasks.innerText = tasks.childElementCount
+      }
+
+      taskComplete = function (event) {
+        event.target.classList = 'bg-success'
+        updateProgress()
+      }
+
+      // function progress () {
+      //   let complete = 0
+      //   tasks.forEach(function(task) {
+      //     if (task.classList = 'bg-success') {
+      //       complete ++
+      //     }
+      //   })
+      // }
+
+      function updateProgress () {
+        const completed = document.querySelectorAll('.bg-success').length
+        progress.value = completed / tasks.childElementCount * 100
+        progress.innerText = progress.value
+        console.log(progress.value)
+      }
+
+
+
+    </script>
+
+  </body>
+</html>
