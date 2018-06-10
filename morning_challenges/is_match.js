@@ -8,9 +8,9 @@ isMatch(stooge, {age: 32});
 */
 
 // Your code here!
-const isMatch = () => {
+const isMatch = (obj, key_val) => {
 
-
+  
 }
 
 // Check your solution by running these tests: mocha *this_filename*

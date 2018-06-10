@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+  </head>
+  <body class="has-text-centered">
+    <progress class="progress is-primary" value="0" max="100">0</progress>
+    <nav class="level">
+      <div class="level-item">
+        <div>
+          <div class="heading">To Do</div>
+          <h1 class="title is-1">0</h1>
+        </div>
+      </div>
+      <div class="level-item">
+        <a class="button" data-mark="complete">Mark All Complete</a>
+      </div>
+      <div class="level-item">
+        <a class="button" data-mark="incomplete">Mark All Incomplete</a>
+      </div>
+      <div class="level-item">
+        <a class="button" id="remove-all">Remove All Tasks</a>
+      </div>
+    </nav>
+
+    <button class="btn" type="button" name="button"></button>
+
+    <form>
+      <input type="text" class="input is-large is-primary has-text-centered" placeholder="add a todo!" value="">
+    </form>
+
+    <br>
+
+    <div id="tasks"></div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+-    //
+-    // Dollar $ign means jQuery :)
+-    //
+
+    // Wait for the page to be ready before running our JS
+    $(document).ready(() => {
++      // Load the tasks from local storage if they exist
++      const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+      // Listen for form submission
+      $('form').submit((event) => {
+        // Prevent the browser from handling the form
+        event.preventDefault();
+
+        // Run the addTask function, pass it the current text in the input
+-        addTask($('form input').val());
++        const task = $('form input').val()
++        addTask(task);
++
++        // Add the task to our array and update local storage!
++        tasks.push(task);
++        localStorage.setItem('tasks', JSON.stringify(tasks));
+
+        // Set the input value back to empty after we add a task
+        $('form input').val('');
+@@ -70,6 +74,11 @@ <h1 class="title is-1">0</h1>
+        const completedTasks = $('#tasks div.notification.is-primary').length;
+        $('progress').val((completedTasks/totalTasks) * 100);
+      }
++
++      // Load any existing tasks
++      for (const task of tasks) {
++        addTask(task)
++      }
+    });
+
+    </script>

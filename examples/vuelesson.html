@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  </head>
+  <body>
+
+    <div id="app">
+      <h2>{{message}}</h2>
+      <h3 v-bind:title='popup'>Hover over me</h3>
+      <span v-if=gtFive()>Now you see me...</span>
+      <ol>
+        <li v-for="todo in todos">
+          {{todo.text}}
+        </li>
+      </ol>
+      <button v-on:click="reverseMessage">reverse message</button>
+      <input v-model="message">
+    </div>
+
+    <script>
+
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: 'Hello vue',
+          popup: 'This me being a popup',
+          num: 0,
+          todos: [
+            { text: 'learn js'},
+            { text: 'learn vue'},
+            { text: 'build something'}
+          ],
+        },
+        methods: {
+          gtFive: function() {
+            return this.num > 5
+          },
+          reverseMessage: function() {
+            this.message = this.message.split('').reverse().join('')
+          }
+        }
+      })
+
+
+    </script>
+
+  </body>
+</html>

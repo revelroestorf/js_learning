@@ -10,12 +10,12 @@
     <h3 class="totalTasks">0</h3>
 
     <div class="">
-      <progress class="text-center text-primary visible" value="0" max="100">0%</progress>
+      <h4 class="text-center text-primary" value="0" max="100">0%</h4>
     </div>
 
 
     <form>
-      <input type="text" class="form-control text-center" value="" placeholder="New todo item">
+      <input type="text" class="form-control text-center" placeholder="New todo item">
       <!-- <button class="btn">button</button> -->
     </form>
 
@@ -28,7 +28,7 @@
       const input = document.querySelector('input')
       const tasks = document.querySelector('#tasks')
       const totalTasks = document.querySelector('.totalTasks')
-      const progress = document.querySelector('progress')
+      const progress = document.querySelector('h4')
 
       // btn.addEventListener('click', function(e) {
       form.addEventListener('submit', function(e) {
@@ -45,11 +45,17 @@
         tasks.prepend(taskElement)
         taskElement.classList = 'todo'
         taskElement.addEventListener('click', taskComplete)
+        taskElement.addEventListener('dblclick', taskRemove)
         totalTasks.innerText = tasks.childElementCount
       }
 
       taskComplete = function (event) {
         event.target.classList = 'bg-success'
+        updateProgress()
+      }
+
+      taskRemove = function (event) {
+        event.target.remove
         updateProgress()
       }
 
@@ -65,7 +71,7 @@
       function updateProgress () {
         const completed = document.querySelectorAll('.bg-success').length
         progress.value = completed / tasks.childElementCount * 100
-        progress.innerText = progress.value
+        progress.innerText = `${progress.value}%`
         console.log(progress.value)
       }
 

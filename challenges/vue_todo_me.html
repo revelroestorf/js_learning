@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Todo List</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+  </head>
+  <body class="has-text-centered">
+    <div id="app">
+
+      <progress class="progress is-primary" value="0" max="100">0</progress>
+
+      <nav class="level">
+        <div class="level-item">
+          <div>
+            <div class="heading">To Do</div>
+            <h1 class="title is-1">0</h1>
+          </div>
+        </div>
+      </nav>
+      <form>
+        <input type="text" class="input is-large is-primary has-text-centered" placeholder="add a todo!" value="">
+      </form>
+      <br>
+      <div v-for="task in tasks">
+        <div> {{task}} </div>
+      </div>
+      <div id="dos" >
+        <div class="notification">An example task!</div>
+        <div class="notification is-primary">I've been completed</div>
+        <div class="notification">Another task</div>
+      </div>
+
+    </div>
+
+    <script>
+      var app = new Vue ({
+        el: '#app',
+        data: {
+          tasks: ['close', 'fix', 'wash']
+        }
+      })
+
+    </script>
+
+
+  </body>
+</html>
