@@ -20,7 +20,7 @@ const omit = (obj, ...omits) => {
     }
   }
   return result
-}
+} 
 // const list = {a: 1, b: 2, c: 3};
 // omit(list, 'a', 'c')
 
