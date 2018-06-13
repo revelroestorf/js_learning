@@ -11,8 +11,16 @@ values({one: 1, two: 2, three: 3});
 */
 
 // Your code here!
-const values = () => {
+const values = (hash) => {
+  const result = []
+  for (let key in hash) {
+    // console.log(typeof hash[key])
+    result.push(hash[key])
+  }
+  return result
 }
+
+// values({one: 1, two: 2})
 
 
 // Check your solution by running these tests: mocha *this_filename*

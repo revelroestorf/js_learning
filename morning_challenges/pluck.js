@@ -8,9 +8,27 @@ pluck(stooges, 'name');
 => ['moe', 'larry']
 */
 
-const pluck = () => {
-  // Your code here!
+// const pluck = (objs, key) => {
+//   const result = []
+//   for (i=0; i<objs.length; i++) {
+//     for (let k in objs[i]) {
+//       if (k == key) {
+//         result.push(objs[i][k])
+//       }
+//     }
+//   } return result
+// }
+
+const pluck = (objs, key) => {
+  var values = objs.map((obj) => {
+    return obj[key]
+  })
+  return values
 }
+
+// const people = [{name: 'moe', age: 30}, {name: 'curly', age: 50}];
+// pluck(people, 'name')
+// const exp = ['moe', 'curly']
 
 // Check your solution by running the tests: mocha *this_filename*
 const assert = require('assert');

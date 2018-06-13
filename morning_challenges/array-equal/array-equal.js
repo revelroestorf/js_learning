@@ -22,8 +22,7 @@ function arrayEqual(a, b) {
 
     a.forEach((char) => {
       let i = a.indexOf(char)
-      if (typeof a[i] === 'number' ?
-        a[i] !== b[i] : !arrayEqual(a[i], b[i])) {
+      if (a[i] !== b[i] || typeof a[i] !== typeof b[i]) {
         return false
       }
     })
