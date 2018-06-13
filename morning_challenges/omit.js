@@ -9,9 +9,20 @@ through them. Look up the "rest parameter" syntax.
 */
 
 // Your code here!
-const omit = () => {
+const omit = (obj, ...omits) => {
+  result = obj
+  for (i=0; i<omits.length; i++) {
+    for (let key in result) {
+      if (omits[i] == key) {
+        delete result[key]
+        // result[key] = obj[key]
+      }
+    }
+  }
+  return result
 }
-
+// const list = {a: 1, b: 2, c: 3};
+// omit(list, 'a', 'c')
 
 // Check your solution by running these tests: mocha *this_filename*
 const assert = require('assert');
