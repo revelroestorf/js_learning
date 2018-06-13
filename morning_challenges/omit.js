@@ -7,20 +7,19 @@ omit({name: 'moe', age: 50, userid: 'moe1'}, 'name', 'age');
 Hint: Given there's an indefinite number of arguments, we'll need to loop
 through them. Look up the "rest parameter" syntax.
 */
-
 // Your code here!
 const omit = (obj, ...omits) => {
   result = obj
-  for (i=0; i<omits.length; i++) {
+  for (var omit of omits) {
     for (let key in result) {
-      if (omits[i] == key) {
+      if (omit == key) {
         delete result[key]
         // result[key] = obj[key]
       }
     }
   }
   return result
-} 
+}
 // const list = {a: 1, b: 2, c: 3};
 // omit(list, 'a', 'c')
 
