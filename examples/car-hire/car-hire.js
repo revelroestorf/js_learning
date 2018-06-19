@@ -21,9 +21,12 @@
 */
 
 function carHireCost (d) {
-  let total = 0;
-  // Your code here!
-  total = 40;
-
-  return total
+  let costPerDay = 40
+  let cost = costPerDay * d
+  if (d >= 3 && d < 7) {
+    cost -= 20
+  } else if (d >= 7) {
+    cost -= 50
+  }
+  return cost
 }

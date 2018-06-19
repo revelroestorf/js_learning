@@ -15,41 +15,38 @@ _.findLastIndex(users, {
 
 // Your code here!
 const findLastIndex = (objects, key_val) => {
-  const reversed = objects.reverse()
-    for (let obj in reverse) {
-      for (key in key_val) {
-        for (k in obj) {
-          if (k == key && obj[k] == key_val[key]) {
-            console.log(findIndex(obj))
-          }
+  for (i = (objects.length - 1); i >= 0; i--) {
+    for (key in key_val) {
+      for (k in obj) {
+        if (k === key && obj[k] === key_val[key]) {
+          return(findIndex(obj))
         }
       }
-    })
+    }
   }
-
 }
-
-const objects = [
-  {a: 0, b: 0},
-  {a: 1, b: 1},
-  {a: 2, b: 2},
-  {a: 0, b: 0}
-];
-
-findLastIndex(objects, {a: 0});
+//
+// const objects = [
+//   {a: 0, b: 0},
+//   {a: 1, b: 1},
+//   {a: 2, b: 2},
+//   {a: 0, b: 0}
+// ];
+//
+// findLastIndex(objects, {a: 0});
 
 // Check your solution by running these tests: mocha *this_filename*
-// const assert = require('assert');
-//
-// describe('Find Last Index', () => {
-//   it('finds the last index', () => {
-//     const objects = [
-//       {a: 0, b: 0},
-//       {a: 1, b: 1},
-//       {a: 2, b: 2},
-//       {a: 0, b: 0}
-//     ];
-//     const result = findLastIndex(objects, {a: 0});
-//     assert.equal(result, 3);
-//   })
-// });
+const assert = require('assert');
+
+describe('Find Last Index', () => {
+  it('finds the last index', () => {
+    const objects = [
+      {a: 0, b: 0},
+      {a: 1, b: 1},
+      {a: 2, b: 2},
+      {a: 0, b: 0}
+    ];
+    const result = findLastIndex(objects, {a: 0});
+    assert.equal(result, 3);
+  })
+});
