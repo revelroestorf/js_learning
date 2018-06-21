@@ -16,7 +16,11 @@ _.countBy([1, 2, 3, 4, 5], (num) => {
 
 // Your code here!
 const countBy = (list, func) => {
-  list.
+  results = {}
+  list.forEach((item) => {
+    results[func(item)] ? results[func(item)]++ : results[func(item)] = 1
+  })
+  return results
 }
 
 // Check your solution by running these tests: mocha *this_filename*

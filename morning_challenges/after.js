@@ -15,12 +15,17 @@ greetAfter()
 */
 
 // Your code here!
-var count = 0
 const after = (times, func) => {
-  if (count >= 3) {
-    return func
+  var count = 0
+  // greetAfter v
+  return function () {
+    count++
+    console.log(count)
+    if (count === times) {
+      return func()
+    }
   }
-  count++
+  // greetAfter^
 }
 
 

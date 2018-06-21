@@ -14,12 +14,12 @@ _.findLastIndex(users, {
 */
 
 // Your code here!
-const findLastIndex = (objects, key_val) => {
-  for (i = (objects.length - 1); i >= 0; i--) {
-    for (key in key_val) {
-      for (k in obj) {
-        if (k === key && obj[k] === key_val[key]) {
-          return(findIndex(obj))
+const findLastIndex = (objs, key_val) => {
+  for (let key in key_val) {
+    for (i = (objs.length - 1); i >= 0; i--) {
+      for (let k in objs[i]) {
+        if (key === k && key_val[key] === objs[i][k]) {
+          return i
         }
       }
     }
