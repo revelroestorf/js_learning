@@ -5,14 +5,24 @@ const bodyParser = require('body-parser')
 
 const app = express()
 
-app.use(bodyParser.json())
+// app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
+
 
 app.use(session({
   secret: 'foobarbat',
   resave: false,
   saveUninitialized: false
 }))
+
+app.use('/secure', (req, res, next) => {
+  if (req.session.loggedIn) {
+    next()
+  } else {
+    res.status(401).send()
+  }
+})
+// req.sessionID
 
 app.use(express.static('public'))
 
@@ -21,32 +31,26 @@ app.get('/', (req, res) => {
 })
 
 app.get('/secure/welcome', (req, res) => {
-  if (req.session.loggedIn) {
-    res.write('<h1>Secure page!</h1>')
-    res.write(`
-      <form action="/auth/logout">
-        <button type="submit">Logout</button>
-      </form>
-      `)
-  } else {
-    res.write('401')
-  }
+  res.write('<h1>Secure page!</h1>')
+  res.write(`
+    <form action="/auth/logout">
+      <button type="submit">Logout</button>
+    </form>
+    `)
   res.send()
 })
 
 app.get('/secure/dog', (req, res) => {
-  if (req.session.loggedIn) {
-    // res.sendFile('dog.jpeg', {root: __dirname })
-    res.send(`
-      <img src="/dog.jpeg"></img>
-      <form action="/auth/logout">
-        <button type="submit">Logout</button>
-      </form>
-      `)
-  } else {
-    res.send(`401
-      `)
-  }
+  res.send(`
+    <img src="/dog.jpeg"></img>
+    <form action="/auth/logout">
+      <button type="submit">Logout</button>
+    </form>
+    `)
+    // res.sendFile(__dirname+'/assets/dog.jpeg')
+    // OR
+    // res.sendFile("${__dirname}/assets/dog.jpeg")
+
 })
 
 app.get('/auth/login', (req, res) => {

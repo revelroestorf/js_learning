@@ -1,7 +1,6 @@
 const { Bookmark, auth } = require('./db')
 
-auth
-  .then(() => {
+auth.then(() => {
     console.log('Connection has been established successfully.');
   }).then(() => {
 
