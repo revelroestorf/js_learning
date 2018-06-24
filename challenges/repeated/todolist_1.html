@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <h1>To Do</h1>
+    <h2>#</h2>
+
+
+    <form>
+      <input type="text" name="" value="">
+      <!-- <button type="submit" name="button">Add</button> -->
+    </form>
+
+    <ol>
+    </ol>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+
+    <script>
+
+    $(document).ready(() => {
+
+      // const form = $('form')
+      // const input = document.querySelector('input')
+      // const ol = document.querySelector('ol')
+      // const activeTasks = document.querySelector('h2')
+      const tasks = []
+
+      $('form').submit((e) => {
+        e.preventDefault()
+        addNewTask($('form input').val())
+      })
+      refreshTasks = (newTask) => {
+        tasks.push(newTask)
+        activeTasks.innerText = tasks.length
+      }
+
+      addNewTask = (task) => {
+        $('form input').val('')
+        $('ol').prepend($(`<li>${task}</li>`))
+        // ol.appendChild((document.createElement("br")))
+
+        input.value = ''
+        refreshTasks(task)
+      }
+
+    })
+
+    </script>
+
+  </body>
+</html>

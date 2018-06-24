@@ -31,10 +31,11 @@
 
       // If there's already a bold link, unbold it (remove the 'selected' class)
       const currentlySelected = document.querySelector('a.selected');
+
       if (currentlySelected) {
         currentlySelected.classList = '';
       }
-      // document.cookie = ''=''
+      // document.cookie = 'class'=''
 
       // Add the 'selected' class to the link so it turns bold!
       event.target.classList = 'selected';
@@ -47,5 +48,6 @@
       language.addEventListener('click', selectLanguage);
     });
     </script>
+    
   </body>
 </html>

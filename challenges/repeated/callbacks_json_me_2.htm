@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Callbacks & JSON</title>
+
+  </head>
+  <body>
+
+    <p>Empty HTML doc :) Some JS is running. Save me to your machine.</p>
+
+    <script>
+
+    // WHY DOESN'T THIS WORK? HOW ARE YOU SUPPOSED TO USE CASLLBACKS?
+
+    getRandomUser = (callback) => {
+
+      var request = new XMLHttpRequest()
+      request.open('GET', 'https://randomuser.me/api/', true)
+      request.send()
+
+      request.onload = function () {
+        // console.log(request)
+        // HOW DOES THIS REQUEST OBJECT CONTAIN THE REPONSE DATA?
+        // SPECIALLY CONSIDERING IT HASN'T EVEN SENT YET..
+        callback(request.response)
+      }
+
+
+      // CALLING MY CALLBACK AND PASSING IT SOME JSON
+    }
+
+    parse = (json) => {
+      console.log(JSON.parse(json))
+    }
+
+  display = (json) => {
+    let data = JSON.parse(json).results[0]
+    document.write(`<h1>${data.name.first}</h1>`)
+    document.write(`<img src='${data.picture.medium}'/>`)
+    document.write(`<button onClick={getRandomUser(display)}>Get Random User</button>`)
+
+
+  }
+
+    getRandomUser(display)
+
+    </script>
+  </body>
+</html>
