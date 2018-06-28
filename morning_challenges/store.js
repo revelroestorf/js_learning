@@ -8,6 +8,11 @@ const Store = function() {
   this.storage = []
 
   this.set = function(key, value){
+    for (let arr of this.storage) {
+      if (arr[0] == key && arr[1] == value) {
+        return
+      }
+    }
     this.storage.push([key,value])
   }
 
@@ -16,13 +21,24 @@ const Store = function() {
   }
 
   this.get = function(key){
-
+    for (let arr of this.storage) {
+      if (arr[0] === key) {
+        return arr[1]
+      }
+    }
+    return null
   }
 
   this.delete = function(key){
-
+    for (let arr of this.storage) {
+      if (arr[0] === key) {
+        this.storage.splice(arr, 1)
+      }
+    }
   }
+
 }
+
 
 const chai = require('chai')
 const should = chai.should()
@@ -41,7 +57,7 @@ describe('Store', function(){
     store.storage.length.should.equal(1)
   });
 
-  xit('retrieves items', function(){
+  it('retrieves items', function(){
     const store = new Store()
     store.set('ye', 'Kanye')
     store.get('ye').should.equal('Kanye')
@@ -49,19 +65,19 @@ describe('Store', function(){
     store.get('drizzy').should.equal('Drake')
   });
 
-  xit('returns null if item isnt found', function(){
+  it('returns null if item isnt found', function(){
     const store = new Store()
     expect(store.get('ye')).to.be.a('null')
   });
 
-  xit('doesnt duplicate items', function(){
+  it('doesnt duplicate items', function(){
     const store = new Store()
     store.set('ye', 'Kanye')
     store.set('ye', 'Kanye')
     store.storage.length.should.equal(1)
   });
 
-  xit('returns the correct size', function(){
+  it('returns the correct size', function(){
     const store = new Store()
     store.set('ye', 'Kanye')
     store.size().should.equal(1)
@@ -69,7 +85,7 @@ describe('Store', function(){
     store.size().should.equal(2)
   });
 
-  xit('deletes items', function(){
+  it('deletes items', function(){
     const store = new Store()
     store.set('ye', 'Kanye')
     store.set('edi', 'Edison')
